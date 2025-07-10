@@ -14,9 +14,39 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: AI Prompts Collection
-description: "A collection of AI conversations and prompts."
+description: "A curated collection of user prompts, system prompts, and AI conversations."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+# Collections setup
+collections:
+  conversations:
+    output: true
+    permalink: /conversations/:path/
+  system_prompts:
+    output: true
+    permalink: /system_prompts/:path/
+  user_prompts:
+    output: true
+    permalink: /user_prompts/:path/
+
+# Defaults for collections
+defaults:
+  - scope:
+      path: ""
+      type: "conversations"
+    values:
+      layout: "prompt"
+  - scope:
+      path: ""
+      type: "system_prompts"
+    values:
+      layout: "prompt"
+  - scope:
+      path: ""
+      type: "user_prompts"
+    values:
+      layout: "prompt"
 
 # Theme
 theme: jekyll-theme-minimal

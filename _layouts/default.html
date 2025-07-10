@@ -1,68 +1,20 @@
 <!DOCTYPE html>
-<html lang="en-US">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <style>
-        .wrapper {
-            display: flex;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        #sidebar {
-            width: 300px;
-            min-width: 250px;
-            border-right: 1px solid #eee;
-            padding-right: 20px;
-            margin-top: 20px;
-        }
-        #sidebar h1 {
-            font-size: 1.5em;
-        }
-        #sidebar h2 {
-            font-size: 1.2em;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 20px;
-        }
-        #sidebar ul {
-            list-style: none;
-            padding-left: 5px;
-        }
-        #sidebar li {
-            margin-bottom: 8px;
-        }
-        #sidebar a {
-            text-decoration: none;
-            color: #0366d6;
-        }
-        #sidebar a:hover {
-            text-decoration: underline;
-        }
-        #main-content {
-            flex-grow: 1;
-            padding-left: 30px;
-        }
-    </style>
-  </head>
-  <body>
-    <div class="wrapper">
-      <aside id="sidebar">
-        <header>
-          <h1><a href="{{ '/' | absolute_url }}">{{ site.title }}</a></h1>
-          <p>{{ site.description }}</p>
-        </header>
-        <nav>
-            {% include navigation.html %}
-        </nav>
-      </aside>
-      <section id="main-content">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+            <p>{{ site.description }}</p>
+        </div>
+    </header>
+    <main class="container">
         {{ content }}
-      </section>
-    </div>
-  </body>
+    </main>
+</body>
 </html>

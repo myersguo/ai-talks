@@ -1,0 +1,175 @@
+/* General Body & Typography */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* Header */
+.site-header {
+    text-align: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 2rem;
+}
+
+.site-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.site-header h1 a {
+    color: #333;
+}
+
+.site-header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0.5rem 0 0;
+}
+
+/* Home Page - Menu Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.card-content p {
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.card-footer {
+    background-color: #f9fafb;
+    padding: 1rem 1.5rem;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+
+.card-footer a {
+    font-weight: 600;
+}
+
+/* Collection List Page */
+.prompt-list {
+    list-style: none;
+    padding: 0;
+}
+
+.prompt-list-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.prompt-list-item:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.prompt-list-item a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Prompt Content Page */
+.prompt-content-wrapper {
+    background: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.prompt-content-wrapper h1 {
+    margin-top: 0;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.prompt-content-wrapper code {
+    background-color: #eef;
+    border-radius: 4px;
+    padding: .2em .4em;
+    font-size: 90%;
+}
+
+.prompt-content-wrapper pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.prompt-content-wrapper pre code {
+    background: none;
+    padding: 0;
+    font-size: 100%;
+}
+
+.breadcrumb {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.breadcrumb a {
+    color: #777;
+    text-decoration: underline;
+}
