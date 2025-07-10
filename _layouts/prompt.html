@@ -2,7 +2,7 @@
 layout: default
 ---
 <div class="breadcrumb">
-    <a href="{{ '/' | relative_url }}">Home</a> / <a href="{{ site[page.collection].first.url | relative_url | split: '/' | first | prepend: '/' }}">{{ page.collection | replace: '_', ' ' | capitalize }}</a> / {{ page.title }}
+    <a href="{{ '/' | relative_url }}">Home</a> / <a href="{{ '/' | append: page.collection | relative_url }}">{{ page.collection | replace: '_', ' ' | capitalize }}</a> / {{ page.title }}
 </div>
 <div class="prompt-content-wrapper">
     <h1>{{ page.title }}</h1>
