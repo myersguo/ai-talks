@@ -10,7 +10,7 @@ layout: default
 <ul class="prompt-list">
     {% for item in site[page.collection_name] %}
     <li class="prompt-list-item">
-        <a href="{{ item.url | relative_url }}">{{ item.data.title | default: item.basename | remove_first: '.md' }}</a>
+        <a href="{{ item.url | relative_url }}">{{ item.title | default: item.basename | remove_first: '.md' }}</a>
     </li>
     {% endfor %}
 </ul>
