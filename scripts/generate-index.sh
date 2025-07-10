@@ -99,7 +99,7 @@ EOF
 find . -name "*.md" | grep -vE '^\./\.github/|^\./README\.md' | sed 's/^\.\///' | sort | sed 's/^/"/' | sed 's/$/"/' | paste -sd, - >> "$OUTPUT_FILE"
 
 # Finish writing the HTML file
-cat >> "$OUTPUT_FILE" <<EOF
+cat >> "$OUTPUT_FILE" <<'EOF'
         ];
 
         const fileTreeContainer = document.getElementById('file-tree');
