@@ -1,5 +1,5 @@
 ---
-title: Gemini CLI, Revealed: Extracting System Behavior Through Dialogue
+title: Gemini CLI, Revealed Extracting System Behavior Through Dialogue
 ---
 ### User
 
