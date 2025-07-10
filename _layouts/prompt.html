@@ -15,51 +15,51 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!content) return;
 
     let currentWrapper = null;
-    let currentSpeaker = null;
+    let lastSpeakerText = null;
 
-    // Use a static copy of the child nodes, as we'll be modifying the DOM
     const nodes = Array.from(content.childNodes);
 
     nodes.forEach(node => {
-        // We only want to process element nodes directly, but move others
         if (node.nodeType !== Node.ELEMENT_NODE) {
-            if (currentWrapper) {
-                currentWrapper.appendChild(node);
-            }
+            if (currentWrapper) currentWrapper.appendChild(node);
             return;
         }
 
-        let isSpeakerChange = false;
-        let speaker = null;
+        let isNewSpeaker = false;
+        let speakerType = null;
+        let speakerDisplay = '';
 
-        // Check if the node is an H3 and signals a speaker change
         if (node.tagName === 'H3') {
-            const text = node.textContent.trim().toLowerCase();
-            if (text === 'user' || text === 'ai') {
-                if (text !== currentSpeaker) {
-                    isSpeakerChange = true;
-                    speaker = text;
-                }
+            const text = node.textContent.trim();
+            const lowerText = text.toLowerCase();
+
+            if (lowerText === 'user') {
+                speakerType = 'user';
+                speakerDisplay = '👤 User';
+            } else if (/^ai(\s*\(.+\))?$/.test(lowerText)) {
+                speakerType = 'ai';
+                speakerDisplay = '🤖 ' + text;
+            }
+
+            if (speakerType && text !== lastSpeakerText) {
+                isNewSpeaker = true;
             }
         }
 
-        if (isSpeakerChange) {
-            // This is a new speaker, so create a new wrapper
-            currentSpeaker = speaker;
+        if (isNewSpeaker) {
+            lastSpeakerText = node.textContent.trim();
             currentWrapper = document.createElement('div');
-            currentWrapper.classList.add('message', currentSpeaker);
+            currentWrapper.classList.add('message', speakerType);
 
             const author = document.createElement('div');
             author.className = 'author';
-            author.textContent = node.textContent.trim(); // Use original casing
+            author.textContent = speakerDisplay;
             currentWrapper.appendChild(author);
             
-            // The h3 is replaced by the new wrapper
             content.insertBefore(currentWrapper, node);
             content.removeChild(node);
 
         } else if (currentWrapper) {
-            // This node is part of the current speaker's message, so move it inside the wrapper
             currentWrapper.appendChild(node);
         }
     });

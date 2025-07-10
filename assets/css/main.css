@@ -242,6 +242,9 @@ h1, h2, h3 {
 }
 
 .message .author {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     font-weight: bold;
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
