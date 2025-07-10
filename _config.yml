@@ -29,6 +29,9 @@ collections:
   user_prompts:
     output: true
     permalink: /user_prompts/:path/
+  ai_knowledge:
+    output: true
+    permalink: /ai_knowledge/:path/
 
 # Defaults for collections
 defaults:
@@ -47,6 +50,11 @@ defaults:
       type: "user_prompts"
     values:
       layout: "prompt"
+  - scope:
+      path: ""
+      type: "ai_knowledge"
+    values:
+      layout: "ai_knowledge"
 
 # Theme
 theme: jekyll-theme-minimal
