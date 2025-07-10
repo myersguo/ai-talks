@@ -232,3 +232,40 @@ h1, h2, h3 {
     color: white;
     font-weight: 600;
 }
+
+/* Conversation Messages */
+.message {
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.message .author {
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.message.user {
+    background-color: #e9f5ff;
+    border-left: 4px solid #007bff;
+}
+
+.message.user .author {
+    color: #0056b3;
+}
+
+.message.ai {
+    background-color: #f8f9fa;
+    border-left: 4px solid #6c757d;
+}
+
+.message.ai .author {
+    color: #495057;
+}
+
+.message p:last-child {
+    margin-bottom: 0;
+}

@@ -8,3 +8,60 @@ layout: default
     <h1>{{ page.title }}</h1>
     {{ content }}
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const content = document.querySelector('.prompt-content-wrapper');
+    if (!content) return;
+
+    let currentWrapper = null;
+    let currentSpeaker = null;
+
+    // Use a static copy of the child nodes, as we'll be modifying the DOM
+    const nodes = Array.from(content.childNodes);
+
+    nodes.forEach(node => {
+        // We only want to process element nodes directly, but move others
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+            if (currentWrapper) {
+                currentWrapper.appendChild(node);
+            }
+            return;
+        }
+
+        let isSpeakerChange = false;
+        let speaker = null;
+
+        // Check if the node is an H3 and signals a speaker change
+        if (node.tagName === 'H3') {
+            const text = node.textContent.trim().toLowerCase();
+            if (text === 'user' || text === 'ai') {
+                if (text !== currentSpeaker) {
+                    isSpeakerChange = true;
+                    speaker = text;
+                }
+            }
+        }
+
+        if (isSpeakerChange) {
+            // This is a new speaker, so create a new wrapper
+            currentSpeaker = speaker;
+            currentWrapper = document.createElement('div');
+            currentWrapper.classList.add('message', currentSpeaker);
+
+            const author = document.createElement('div');
+            author.className = 'author';
+            author.textContent = node.textContent.trim(); // Use original casing
+            currentWrapper.appendChild(author);
+            
+            // The h3 is replaced by the new wrapper
+            content.insertBefore(currentWrapper, node);
+            content.removeChild(node);
+
+        } else if (currentWrapper) {
+            // This node is part of the current speaker's message, so move it inside the wrapper
+            currentWrapper.appendChild(node);
+        }
+    });
+});
+</script>
