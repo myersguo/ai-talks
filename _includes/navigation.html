@@ -1,4 +1,4 @@
-{% assign pages_by_dir = site.documents | where_exp: "item", "item.path contains '/' and item.extname == '.md'" | group_by_exp: "item", "item.path | split: '/' | first" %}
+{% assign pages_by_dir = site.documents | where_exp: "item", "item.path contains '/'" | where_exp: "item", "item.extname == '.md'" | group_by_exp: "item", "item.path | split: '/' | first" %}
 
 {% for dir in pages_by_dir %}
   <h2>{{ dir.name | replace: '_', ' ' | capitalize }}</h2>
