@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <style>
+        .wrapper {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #sidebar {
+            width: 280px;
+            min-width: 200px;
+            border-right: 1px solid #eee;
+            padding-right: 20px;
+            margin-top: 20px;
+        }
+        #sidebar h2 {
+            font-size: 1.2em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding-left: 5px;
+        }
+        #sidebar ul ul {
+            padding-left: 15px;
+        }
+        #sidebar li {
+            margin-bottom: 8px;
+        }
+        #main-content {
+            flex-grow: 1;
+            padding-left: 30px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <aside id="sidebar">
+        <header>
+          <h1><a href="{{ '/' | absolute_url }}">{{ site.title }}</a></h1>
+          <p>{{ site.description }}</p>
+        </header>
+        <nav>
+            {{ content }}
+        </nav>
+      </aside>
+      <section id="main-content">
+        <!-- Content will be injected by Jekyll here, but we need a default view -->
+        <div id="jekyll-content">
+            <!-- This will be replaced by Jekyll's content -->
+        </div>
+      </section>
+    </div>
+    <script>
+        // Simple client-side routing to load content without full page reloads
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.getElementById('jekyll-content');
+            const sidebarLinks = document.querySelectorAll('#sidebar a');
+
+            function loadContent(url) {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const newContent = doc.querySelector('#main-content').innerHTML;
+                        mainContent.innerHTML = newContent;
+                        window.history.pushState({}, '', url);
+                    })
+                    .catch(err => console.error('Failed to load page: ', err));
+            }
+
+            sidebarLinks.forEach(link => {
+                // Don't add listener to the main site title link
+                if (link.getAttribute('href') === '{{ '/' | absolute_url }}') return;
+
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const url = this.getAttribute('href');
+                    loadContent(url);
+                });
+            });
+
+            // Handle back/forward browser buttons
+            window.addEventListener('popstate', () => {
+                loadContent(window.location.pathname);
+            });
+
+            // Load initial content if it's a sub-page
+            if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+                 mainContent.innerHTML = document.querySelector('#main-content').innerHTML;
+            } else {
+                 mainContent.innerHTML = '<h2>Welcome!</h2><p>Select a file from the sidebar to view its content.</p>';
+            }
+        });
+    </script>
+  </body>
+</html>
